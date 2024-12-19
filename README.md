@@ -1,2 +1,2 @@
-# Perosnal-Portfolio
+# Personal-Portfolio
 adrian-savin
