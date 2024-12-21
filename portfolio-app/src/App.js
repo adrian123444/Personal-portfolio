@@ -1,20 +1,28 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import Menu from './components/menu';
 import MoonSun from './components/MoonSun';
-import HomeSection from './sections/HomeSection';
-import AboutSection from './sections/AboutSection';
-import ProjectsSection from './sections/ProjectsSection';
+import HomeSection from './sections/HomeSection'; // Correct import
+import AboutSection from './sections/AboutSection'; // Correct import
+import ProjectsSection from './sections/ProjectsSection'; // Correct import
 import './App.css';
+
+// Import the scroll logic from scrolling.js
+import { useScrollEffect } from './components/scrolling';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [activeSection, setActiveSection] = useState('home');
-  const [touchStart, setTouchStart] = useState(0); // Define touchStart state
+  const [currentSection, setCurrentSection] = useState(0); // State for current section
 
-  const homeRef = React.createRef();
-  const aboutRef = React.createRef();
-  const projectsRef = React.createRef();
+  const sections = ['home', 'about', 'projects']; // List of sections
+
+  // Use scroll effect from scrolling.js
+  const { handleScroll, handleWheel, handleTouchStart, handleTouchMove } = useScrollEffect(
+    currentSection, 
+    setCurrentSection, 
+    sections
+  );
 
   useEffect(() => {
     document.documentElement.classList.add('dark');
@@ -28,57 +36,27 @@ function App() {
     }
   }, [darkMode]);
 
-  const handleScroll = (section) => {
-    setActiveSection(section);
-  };
-
+  // Add event listener for wheel
   useEffect(() => {
-    // Handle wheel scroll (for mouse scroll)
-    const handleWheel = (e) => {
-      if (e.deltaY > 0) {
-        if (activeSection === 'home') setActiveSection('about');
-        if (activeSection === 'about') setActiveSection('projects');
-      } else {
-        if (activeSection === 'projects') setActiveSection('about');
-        if (activeSection === 'about') setActiveSection('home');
-      }
-    };
-
-    // Handle touch scroll (for mobile swipe gestures)
-    const handleTouchStart = (e) => {
-      setTouchStart(e.touches[0].clientY);
-    };
-
-    const handleTouchMove = (e) => {
-      const touchEnd = e.touches[0].clientY;
-      if (touchStart - touchEnd > 50) {
-        if (activeSection === 'home') setActiveSection('about');
-        if (activeSection === 'about') setActiveSection('projects');
-      } else if (touchEnd - touchStart > 50) {
-        if (activeSection === 'projects') setActiveSection('about');
-        if (activeSection === 'about') setActiveSection('home');
-      }
-    };
-
     window.addEventListener('wheel', handleWheel);
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove);
 
+    // Clean up event listener on component unmount
     return () => {
       window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [activeSection, touchStart]);
+  }, [handleWheel]); // Add handleWheel to the dependency array
 
   return (
     <div className="App min-h-screen bg-lightBg dark:bg-gray-300 text-gray-800 dark:text-white relative overflow-hidden">
+      {/* Use Menu component */}
       <Menu handleScroll={handleScroll} />
 
-      <HomeSection ref={homeRef} isActive={activeSection === 'home'} />
-      <AboutSection ref={aboutRef} isActive={activeSection === 'about'} />
-      <ProjectsSection ref={projectsRef} isActive={activeSection === 'projects'} />
+      {/* Sections */}
+      <HomeSection isActive={currentSection === 0} />
+      <AboutSection isActive={currentSection === 1} />
+      <ProjectsSection isActive={currentSection === 2} />
 
+      {/* Use MoonSun component */}
       <MoonSun darkMode={darkMode} setDarkMode={setDarkMode} />
     </div>
   );
