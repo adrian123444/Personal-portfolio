@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useScrollEffect = (currentSection, setCurrentSection, sections) => {
   const [touchStart, setTouchStart] = useState(0); // State to store the starting touch point
@@ -13,6 +13,7 @@ export const useScrollEffect = (currentSection, setCurrentSection, sections) => 
 
   // Handle wheel scroll (for mouse scroll)
   const handleWheel = (e) => {
+    e.preventDefault(); // Prevent default scroll behavior
     if (e.deltaY > 0) {
       if (currentSection < sections.length - 1) {
         setCurrentSection(currentSection + 1); // Scroll down to the next section
@@ -37,6 +38,20 @@ export const useScrollEffect = (currentSection, setCurrentSection, sections) => 
       setCurrentSection(currentSection - 1); // Scroll up to the previous section
     }
   };
+
+  // Add event listeners for wheel and touch scroll
+  useEffect(() => {
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
+
+    // Clean up the event listeners
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [currentSection, touchStart]); // Dependencies for effect
 
   return {
     handleScroll,
