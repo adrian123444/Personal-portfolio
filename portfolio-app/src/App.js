@@ -47,7 +47,7 @@ function App() {
   }, [handleWheel]); // Add handleWheel to the dependency array
 
   return (
-    <div className="App min-h-screen bg-lightBg dark:bg-gray-300 text-gray-800 dark:text-white relative overflow-hidden">
+    <div className="App min-h-screen bg-lightBg dark:bg-gray-700 text-gray-800 dark:text-white relative overflow-hidden">
       {/* Use Menu component */}
       <Menu handleScroll={handleScroll} />
 
