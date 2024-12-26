@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { FaHandPointer } from 'react-icons/fa';
+import ReusableModal from '../components/modal';
 
 const Projects = ({ projects, navigateToSlide }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [cardHeight, setCardHeight] = useState('300px');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   useEffect(() => {
     const updateCardHeight = () => {
@@ -19,12 +22,21 @@ const Projects = ({ projects, navigateToSlide }) => {
 
     updateCardHeight();
     window.addEventListener('resize', updateCardHeight);
-      return () => window.removeEventListener('resize', updateCardHeight);
-    }, []);
+    return () => window.removeEventListener('resize', updateCardHeight);
+  }, []);
+
+  const openModal = (project) => {
+    setModalContent(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalContent(null);
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="p-4 md:p-6 lg:py-6 lg:px-5 w-full max-w-7xl">
-
       {/* Project Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {projects.map((project, index) => (
@@ -50,14 +62,18 @@ const Projects = ({ projects, navigateToSlide }) => {
             >
               <h2 className="text-2xl font-bold text-white mb-2">{project.title}</h2>
               <p className="text-white italic text-sm mb-4">{project.copy}</p>
-              <button className="py-2 px-4 bg-white text-white font-semibold text-xs uppercase rounded bg-gray-700 hover:bg-gray-600 hover:animate-pulse">
+              <button
+                className="py-2 px-4 bg-white text-white font-semibold text-xs uppercase rounded bg-gray-700 hover:bg-gray-600 hover:animate-pulse"
+                onClick={() => openModal(project)}
+              >
                 {project.button}
               </button>
             </div>
           </div>
         ))}
       </div>
-      
+      {/* Reusable Modal */}
+      <ReusableModal isOpen={isModalOpen} closeModal={closeModal} content={modalContent} />
     </div>
   );
 };
