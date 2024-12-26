@@ -37,6 +37,10 @@ module.exports = {
           '100%': { transform: 'translateY(12rem)' },
         },
       },
+      // Extend grid options if needed
+      gridTemplateColumns: {
+        'custom': 'repeat(5, minmax(0, 1fr))', // 5 columns grid example
+      },
     },
   },
   plugins: [],

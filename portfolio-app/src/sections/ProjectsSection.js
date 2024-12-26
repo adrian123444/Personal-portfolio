@@ -23,7 +23,7 @@ const ProjectsSection = ({ isActive }, ref) => {
       image: 'https://images.unsplash.com/photo-1545243424-0ce743321e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
     },
     {
-      title: 'Explore The Galaxy',
+      title: 'The Galaxy',
       copy: 'Seriously, straight up, just blast off into outer space today.',
       button: 'Book Now',
       image: 'https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
@@ -45,7 +45,7 @@ const ProjectsSection = ({ isActive }, ref) => {
   return (
     <div
       ref={ref}
-      className={`p-10 projects-section min-h-screen w-full flex flex-col items-center justify-center bg-gray-500 dark:bg-gray-600 absolute transition-all duration-[1200ms] ease-[cubic-bezier(0.42, 0, 0.58, 1)] ${isActive ? 'left-0' : '-left-[120%]'}`}
+      className={`projects-section min-h-screen w-full flex flex-col items-center justify-center bg-gray-500 dark:bg-gray-600 absolute transition-all duration-[1200ms] ease-[cubic-bezier(0.42, 0, 0.58, 1)] ${isActive ? 'left-0' : '-left-[120%]'}`}
     >
       <h1 className="text-3xl text-white mt-16 mb-10">Projects</h1>
       <Projects projects={projects} />
