@@ -47,7 +47,7 @@ const ProjectsSection = ({ isActive }, ref) => {
       ref={ref}
       className={`p-10 projects-section min-h-screen w-full flex flex-col items-center justify-center bg-gray-500 dark:bg-gray-600 absolute transition-all duration-[1200ms] ease-[cubic-bezier(0.42, 0, 0.58, 1)] ${isActive ? 'left-0' : '-left-[120%]'}`}
     >
-      <h1 className="text-3xl text-white mb-8">Projects</h1>
+      <h1 className="text-3xl text-white mt-16 mb-10">Projects</h1>
       <Projects projects={projects} />
     </div>
   );

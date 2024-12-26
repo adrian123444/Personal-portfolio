@@ -1,5 +1,5 @@
-// src/components/Projects.js
 import React, { useState } from 'react';
+import { FaHandPointer } from 'react-icons/fa'; // Import the hand icon from react-icons/fa
 
 const Projects = ({ projects }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null); // Track which card is hovered
@@ -22,6 +22,13 @@ const Projects = ({ projects }) => {
 
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 transition-opacity duration-700 group-hover:opacity-90"></div>
+
+          {/* Centered Hand Icon (Initially visible, fades on hover/touch) */}
+          <div
+            className="absolute inset-0 flex justify-center items-center text-white text-4xl opacity-100 group-hover:opacity-0 group-focus:opacity-0 transition-opacity duration-700"
+          >
+            <FaHandPointer /> {/* React Icon */}
+          </div>
 
           {/* Content */}
           <div
