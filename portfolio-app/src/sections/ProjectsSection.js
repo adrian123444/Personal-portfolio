@@ -5,41 +5,41 @@ import Projects from '../components/projects';
 const ProjectsSection = ({ isActive }, ref) => {
   const projects = [
     {
-      title: 'Mountain View',
-      copy: 'Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains.',
-      button: 'View Trips',
+      title: 'Project Title',
+      copy: 'Some short description of the project for our viewers',
+      button: 'To the Project',
       image: 'https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
     },
     {
-      title: 'To The Beach',
-      copy: 'Plan your next beach trip with these fabulous destinations.',
-      button: 'View Trips',
+      title: 'Project Title',
+      copy: 'Some short description of the project for our viewers',
+      button: 'To the Project',
       image: 'https://images.unsplash.com/photo-1533903345306-15d1c30952de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
     },
     {
-      title: 'Desert Destinations',
-      copy: 'It\'s the desert you\'ve always dreamed of.',
-      button: 'Book Now',
+      title: 'Project Title',
+      copy: 'Some short description of the project for our viewers',
+      button: 'To the Project',
       image: 'https://images.unsplash.com/photo-1545243424-0ce743321e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
     },
     {
-      title: 'The Galaxy',
-      copy: 'Seriously, straight up, just blast off into outer space today.',
-      button: 'Book Now',
+      title: 'Project Title',
+      copy: 'Some short description of the project for our viewers',
+      button: 'To the Project',
       image: 'https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
     },
     {
-      title: 'Mountain View',
-      copy: 'Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains.',
-      button: 'View Trips',
+      title: 'Project Title',
+      copy: 'Some short description of the project for our viewers',
+      button: 'To the Project',
       image: 'https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
     },
     {
-      title: 'Desert Destinations',
-      copy: 'It\'s the desert you\'ve always dreamed of.',
-      button: 'Book Now',
+      title: 'Project Title',
+      copy: 'Some short description of the project for our viewers',
+      button: 'To the Project',
       image: 'https://images.unsplash.com/photo-1545243424-0ce743321e11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
-    },
+    }
   ];
 
   return (

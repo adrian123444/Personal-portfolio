@@ -32,12 +32,25 @@ export const useScrollEffect = (currentSection, setCurrentSection, sections) => 
 
   const handleTouchMove = (e) => {
     const touchEnd = e.touches[0].clientY;
-    if (touchStart - touchEnd > 50 && currentSection < sections.length - 1) {
-      setCurrentSection(currentSection + 1); // Scroll down to the next section
-    } else if (touchEnd - touchStart > 50 && currentSection > 0) {
-      setCurrentSection(currentSection - 1); // Scroll up to the previous section
+  
+    // Swipe threshold to detect intent
+    const swipeThreshold = 50;
+  
+    if (Math.abs(touchStart - touchEnd) > swipeThreshold) {
+      if (touchStart - touchEnd > 0 && currentSection < sections.length - 1) {
+        // Scroll down to the next section if not at the last section
+        setCurrentSection((prev) => prev + 1);
+      } else if (touchStart - touchEnd < 0 && currentSection > 0) {
+        // Scroll up to the previous section if not at the first section
+        setCurrentSection((prev) => prev - 1);
+      }
+  
+      // Reset touchStart to avoid repeated triggers
+      setTouchStart(touchEnd);
     }
   };
+  
+  
 
   // Add event listeners for wheel and touch scroll
   useEffect(() => {
